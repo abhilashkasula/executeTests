@@ -1,7 +1,12 @@
 #!/bin/bash
 
-mv test test1
-svn export http://github.com/step-batch-7/geometry-$1/trunk/test test
-mocha
-rm -rf test
-mv test1 test
+# declare user='step-batch-7'
+# declare repo='geometry-'${1}
+echo "UserName:"
+read user
+echo 'repository'
+read repo
+echo 'connecting...'
+svn export http://github.com/${user}/${repo}/trunk/test otherTests >/dev/null
+mocha otherTests
+rm -rf otherTests
